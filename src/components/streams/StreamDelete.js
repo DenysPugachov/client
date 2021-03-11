@@ -7,8 +7,8 @@ const StreamDelete = () => {
 
   const actions = (
     <>
-      <button className="ui button ">Cancel</button>
       <button className="ui button negative">Delete</button>
+      <button className="ui button ">Cancel</button>
     </>
   )
 

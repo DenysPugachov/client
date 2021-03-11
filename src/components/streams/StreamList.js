@@ -1,55 +1,61 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchStreams } from "../../actions";
-
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import { fetchStreams } from "../../actions"
 
 class StreamList extends Component {
   componentDidMount() {
-    this.props.fetchStreams();
+    this.props.fetchStreams()
   }
-
 
   renderAdmin(stream) {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={ `/streams/edit/${stream.id}` } className="ui button small primary">Edit</Link>
-          <button className="ui button small negative">Delete</button>
-        </div >
+          <Link
+            to={ `/streams/edit/${stream.id}` }
+            className="ui button small primary"
+          >
+            Edit
+          </Link>
+          <Link
+            className="ui button small negative"
+            to={ `/streams/delete/${stream.id}` }
+          >Delete</Link>
+        </div>
       )
     }
   }
-
 
   renderList() {
     return this.props.streams.map(stream => {
       return (
         <div className="item" key={ stream.id }>
+
           {this.renderAdmin(stream) }
+
           <i className="large middle aligned icon camera" />
+
           <div className="content">
             { stream.title }
-            <div className="description">
-              { stream.description }
-            </div>
+            <div className="description">{ stream.description }</div>
           </div>
         </div>
       )
     })
   }
 
-
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
         <div style={ { textAlign: "right" } }>
-          <Link to="/streams/new" className="ui button green">Create Stream</Link>
+          <Link to="/streams/new" className="ui button green">
+            Create Stream
+          </Link>
         </div>
       )
     }
   }
-
 
   render() {
     return (
@@ -62,7 +68,6 @@ class StreamList extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     //Object.values(obj) => return arr of an obj (@params);
@@ -72,5 +77,4 @@ const mapStateToProps = state => {
   }
 }
 
-
-export default connect(mapStateToProps, { fetchStreams })(StreamList);
+export default connect(mapStateToProps, { fetchStreams })(StreamList)
