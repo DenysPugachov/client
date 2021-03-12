@@ -8,12 +8,14 @@ import StreamShow from "./streams/StreamShow"
 import Header from "./Header";
 import history from "../history"
 
+//good template for your app 380
 
 const App = () => {
   return (
     <div className="ui container">
       <Router history={ history }>
         <Header />
+
         {/* <Switch /> => show only first route with can find */ }
         <Switch>
           <Route path="/" exact component={ StreamList } />
